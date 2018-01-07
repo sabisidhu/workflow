@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans SYSTEM "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- ==========================================================================
+*     SPRING BEAN DEFINITION FILE
+*     Javaworld Article - Simple Sequence Workflow Example
+  ========================================================================== -->
+<beans>
+	
+
+
+	<bean id="activity1" 
+		class="test.sequence.simple.Activity1"/>
+		
+	<bean id="activity2" 
+		class="test.sequence.simple.Activity2"/>
+		
+	<bean id="activity3" 
+		class="test.sequence.simple.Activity3"/>
+		
+
+	<bean id="simpleContext"
+		class="test.sequence.simple.SimpleContext" singleton="false"/>
+		
+		
+	<!-- simple sequence workflow process -->
+	<bean id="simpleProcessor" class="iocworkflow.SequenceProcessor" >
+		<property name="activities">
+			<list>
+				<ref bean="activity1"/>
+				<ref bean="activity2"/>
+				<ref bean="activity3"/>
+			</list>
+		</property>
+		<property name="processContextClass">
+			<value>test.sequence.simple.SimpleContext</value>
+		</property>
+	</bean>
+
+	
+</beans>
